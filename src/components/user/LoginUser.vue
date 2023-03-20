@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     async submitForm(formEl) {
-      if (!formEl) return;
+      // if (!formEl) return;
       await formEl.validate((valid, fields) => {
         if (valid) {
           console.log("submit!");

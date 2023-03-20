@@ -1,10 +1,13 @@
 <template>
   <base-card>
     <el-col>
-      <h1>{{ title }} Convince me to watch Annette</h1>
+      <h1>
+        {{ answer.requestPhrase }}
+        <!-- Convince me to watch Annette -->
+      </h1>
       <p>
-        {{ answer }}
-        If you're looking for a movie that's unique, thought-provoking, and
+        {{ answer.answer }}
+        <!-- If you're looking for a movie that's unique, thought-provoking, and
         emotionally impactful, then "Annette" might just be the film for you.
         Firstly, the movie is a musical drama directed by Leos Carax, who is
         known for his visually stunning and emotionally charged films. The movie
@@ -19,7 +22,7 @@
         Overall, "Annette" is a film that will make you think and feel deeply.
         It's an immersive experience that will stay with you long after the
         credits roll. So if you're a fan of unique and challenging films,
-        "Annette" is definitely worth watching.
+        "Annette" is definitely worth watching. -->
       </p>
     </el-col>
     <el-row>
@@ -36,8 +39,15 @@ export default {
     BaseCard,
   },
   props: {
-    title: String,
-    answer: String,
+    // title: String,
+    // answer: String,
+  },
+  computed: {
+    answer() {
+      console.log(this.$store.getters.lastAnswer);
+      return this.$store.getters.lastAnswer;
+    },
+    // ...mapGetters(["lastAnswer"]),
   },
 };
 </script>

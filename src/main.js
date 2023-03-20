@@ -11,16 +11,23 @@ const store = createStore({
   modules: { requestModule, categoryModule },
   state: {
     isShould: false,
+    isLoading: false,
   },
   mutations: {
     changeShould(state) {
       state.isShould = !state.isShould;
+    },
+    changeLoading(state) {
+      state.isLoading = !state.isLoading;
     },
   },
   actions: {},
   getters: {
     isShould(state) {
       return state.isShould;
+    },
+    isLoading(state) {
+      return state.isLoading;
     },
   },
 });

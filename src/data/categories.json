@@ -15,7 +15,7 @@
     {
       "categoryName": "Restaurant Dining",
       "categoryPhraseForShould": "Convince me to EAT THERE",
-      "categoryPhraseForShouldNot": "Convince me to NOT EAT THERE",
+      "categoryPhraseForShouldNot": "Convince me to NOT EAT",
       "categoryInputPhrase": "The Name of the Restaurant"
     },
     {
@@ -26,14 +26,14 @@
     },
     {
       "categoryName": "Workout Routine",
-      "categoryPhraseForShould": "Convince me to DO IT",
-      "categoryPhraseForShouldNot": "Convince me to NOT DO IT",
+      "categoryPhraseForShould": "Convince me to DO ",
+      "categoryPhraseForShouldNot": "Convince me to NOT DO",
       "categoryInputPhrase": "The Name of the Workout Routine"
     },
     {
       "categoryName": "Music Album Listening",
-      "categoryPhraseForShould": "Convince me to LISTEN",
-      "categoryPhraseForShouldNot": "Convince me to NOT LISTEN",
+      "categoryPhraseForShould": "Convince me to LISTEN to",
+      "categoryPhraseForShouldNot": "Convince me to NOT LISTEN to",
       "categoryInputPhrase": "The Name of the Music Album"
     },
     {
@@ -44,8 +44,8 @@
     },
     {
       "categoryName": "Movie Streaming Service Subscription",
-      "categoryPhraseForShould": "Convince me to SUBSCRIBE",
-      "categoryPhraseForShouldNot": "Convince me to NOT SUBSCRIBE",
+      "categoryPhraseForShould": "Convince me to SUBSCRIBE to",
+      "categoryPhraseForShouldNot": "Convince me to NOT SUBSCRIBE to",
       "categoryInputPhrase": "The Name of the Streaming Service"
     },
     {
