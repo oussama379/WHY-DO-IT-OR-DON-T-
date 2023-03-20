@@ -1,6 +1,14 @@
 const requestModule = {
   state: {},
-  mutations: {},
+  mutations: {
+    sendRequestToGptApi(state, payload) {
+      console.log("Payload: " + payload.category.categoryPhraseForShouldNot);
+    },
+    sendAnotherRequestToGptApi(state, payload) {
+      console.log("Payload: " + payload.category.categoryPhraseForShouldNot);
+    },
+    saveAnswer() {},
+  },
   actions: {},
   getters: {},
 };

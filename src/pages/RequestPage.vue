@@ -1,24 +1,22 @@
 <template>
-  <send-input></send-input>
+  <convinced-or-not></convinced-or-not>
+
+  <request-result></request-result>
 </template>
 
 <script>
-// import BaseCard from "../components/ui/BaseCard.vue";
-import SendInput from "../components/request/SendInput.vue";
+import RequestResult from "../components/request/RequestResult.vue";
+import ConvincedOrNot from "../components/request/ConvincedOrNot.vue";
 export default {
   components: {
-    // BaseCard,
-    SendInput,
+    RequestResult,
+    ConvincedOrNot,
   },
   props: {
     // category: String,
   },
 
-  computed: {
-    category() {
-      return this.$route.params.category;
-    },
-  },
+  computed: {},
 };
 </script>
 

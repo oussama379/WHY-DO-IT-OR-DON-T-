@@ -28,7 +28,6 @@
     </h3>
   </base-card>
   <br />
-  <br />
   <router-view></router-view>
 </template>
 
@@ -41,11 +40,6 @@ export default {
   computed: {
     isShould() {
       return this.$store.getters.isShould;
-    },
-    explainerMsg() {
-      return `${this.$route.path}`.startsWith("/home/send-input")
-        ? "This Category is for ...."
-        : "This Site is for ....";
     },
   },
   components: {

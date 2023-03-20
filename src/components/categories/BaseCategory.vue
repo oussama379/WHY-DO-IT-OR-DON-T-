@@ -15,7 +15,6 @@ export default {
   emits: ["select-category"],
   props: {
     categoryName: String,
-    // color: String,
   },
   computed: {
     randomColor() {

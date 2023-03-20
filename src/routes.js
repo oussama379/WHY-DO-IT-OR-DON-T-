@@ -4,6 +4,8 @@ import MainPage from "./pages/MainPage.vue";
 import ListRequestsPage from "./pages/ListRequestsPage.vue";
 import BoxCategories from "./components/categories/BoxCategories.vue";
 import SendInput from "./components/request/SendInput.vue";
+import RequestPage from "./pages/RequestPage.vue";
+import LoginAndRegistrationPage from "./pages/LoginAndRegistrationPage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,8 +18,9 @@ const router = createRouter({
       children: [
         {
           name: "send-input",
-          path: "send-input/:category",
+          path: "send-input/:categoryName",
           component: SendInput,
+          props: true,
         },
         {
           name: "categories",
@@ -26,14 +29,31 @@ const router = createRouter({
         },
       ],
     },
-
     {
-      name: "myrequest",
+      name: "request-page",
+      path: "/request-page",
+      component: RequestPage,
+    },
+    {
+      name: "my-requests",
       path: "/my-requests",
       component: ListRequestsPage,
     },
+    {
+      name: "login-register",
+      path: "/login-register",
+      component: LoginAndRegistrationPage,
+    },
     { path: "/:pathMatch(.*)*", redirect: "/home" },
   ],
+  scrollBehavior(to) {
+    if (to.name === "request-result") {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  },
 });
 
 export default router;

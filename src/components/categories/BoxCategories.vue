@@ -5,7 +5,7 @@
         <BaseCategory
           v-for="category in chunk"
           :key="category"
-          :categoryName="category"
+          :categoryName="category.categoryName"
           @select-category="categorySelected"
         ></BaseCategory>
       </el-row>
@@ -20,6 +20,9 @@ export default {
     BaseCategory,
   },
   computed: {
+    categories() {
+      return this.$store.getters.categories;
+    },
     chunkedCategories() {
       const chunkSize = 4; // set the desired size of each chunk
       return this.categories.reduce((acc, curr, i) => {
@@ -33,21 +36,13 @@ export default {
     },
   },
   data() {
-    return {
-      categories: [
-        "Movie Watching",
-        "Book Reading",
-        "Learning",
-        "Going",
-        "Practicing",
-      ],
-    };
+    return {};
   },
   methods: {
     categorySelected(payload) {
       this.$router.push({
         name: "send-input",
-        params: { category: payload.categoryName },
+        params: { categoryName: payload.categoryName },
       });
 
       //GO TO SEND REQUEST PAGE
