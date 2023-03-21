@@ -73,7 +73,7 @@ const requestModule = {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            "X-API-KEY": "467c7e83-acc5-4a7a-bda4-94d34e7dd2da",
+            "X-API-KEY": "467c7e83-acc5-4a7a-bda4-94d34e7dd2dax",
           },
           body: JSON.stringify({
             enable_google_results: "true",
@@ -82,12 +82,12 @@ const requestModule = {
           }),
         }
       );
+      const responseData = await response.json();
 
       if (!response.ok) {
-        console.log("Error:" + response);
+        const error = new Error(responseData.message || "failed to fetch!");
+        throw error;
       }
-
-      const responseData = await response.json();
 
       context.commit("setAnswer", {
         answer: responseData.message,

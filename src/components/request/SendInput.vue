@@ -1,13 +1,20 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
-  <el-form :model="formData" :rules="formRules" @submit.prevent="">
+  <base-dialog
+    :title="title"
+    :message="message"
+    :centerDialogVisible="!!error"
+    @updateCenterDialogVisible="error = null"
+  >
+  </base-dialog>
+  <el-form ref="form" :model="form" :rules="rules" @submit.prevent="">
     <el-row :gutter="12">
       <el-col :span="8"> </el-col>
       <el-col :span="8">
         <el-form-item prop="input">
           <el-input
             style="height: 40px"
-            v-model="formData.input"
+            v-model="form.input"
             :placeholder="category.categoryInputPhrase"
           >
             <template #prepend v-if="this.$store.getters.isShould">
@@ -24,7 +31,7 @@
           v-if="!isLoading"
           size="large"
           :icon="Search"
-          @click="sendRequest(formRules)"
+          @click="sendRequest('form')"
           round
           >Send</el-button
         >
@@ -38,13 +45,23 @@
 </template>
 
 <script>
+import BaseDialog from "@/components/ui/BaseDialog.vue";
 export default {
+  components: {
+    BaseDialog,
+  },
   data() {
     return {
-      formData: {
+      error: null,
+      dialog: {
+        title: "Warning ",
+        message: "",
+        centerDialogVisible: false,
+      },
+      form: {
         input: "",
       },
-      formRules: {
+      rules: {
         input: [
           {
             required: true,
@@ -58,29 +75,27 @@ export default {
   props: {},
 
   methods: {
-    async sendRequest(formRules) {
-      if (!formRules) return;
-      await formRules.validate((valid, fields) => {
+    sendRequest(formName) {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          this.$store
-            .dispatch("sendRequestToGptApi", {
+          const requestPhrase = this.$store.getters.isShould
+            ? this.category.categoryPhraseForShould
+            : this.category.categoryPhraseForShouldNot;
+          try {
+            await this.$store.dispatch("sendRequestToGptApi", {
               categoryName: this.category.categoryName,
-              requestPhrase: this.$store.getters.isShould
-                ? this.category.categoryPhraseForShould
-                : this.category.categoryPhraseForShouldNot + " " + this.input,
-            })
-            .then(() => {
-              this.$router.push({ name: "request-page" });
-            })
-            .catch((error) => {
-              console.log(error);
-            })
-            .finally(() => {
-              this.$store.commit("setIsLoading", false);
+              requestPhrase: requestPhrase + " " + this.form.input,
             });
-          console.log("error submit!", fields);
-        } else {
+            this.$router.push({ name: "request-page" });
+          } catch (error) {
+            this.error = error.message || "Something went wrong!";
+            this.message = this.error;
+            console.log(this.error);
+          }
+          this.$store.commit("changeLoading");
           console.log("submit!");
+        } else {
+          console.log("error submit!");
         }
       });
     },
