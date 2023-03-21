@@ -1,5 +1,9 @@
 const requestModule = {
   state: {
+    convincedOrNotCounter: {
+      convinced: 0,
+      notConvinced: 0,
+    },
     lastAnswer: {
       categoryName: "",
       requestPhrase: "",
@@ -63,25 +67,20 @@ const requestModule = {
   },
   actions: {
     async sendRequestToGptApi(context, payload) {
-      console.log("Url" + process.env.VUE_APP_GPT_API_URL);
-      console.log("APi key" + process.env.VUE_APP_GPT_API_KEY);
       context.commit("changeLoading");
-      const response = await fetch(
-        "https://api.writesonic.com/v2/business/content/chatsonic?engine=premium",
-        {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            "content-type": "application/json",
-            "X-API-KEY": "467c7e83-acc5-4a7a-bda4-94d34e7dd2dax",
-          },
-          body: JSON.stringify({
-            enable_google_results: "true",
-            enable_memory: false,
-            input_text: payload.requestPhrase,
-          }),
-        }
-      );
+      const response = await fetch(process.env.VUE_APP_GPT_API_URL, {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "X-API-KEY": process.env.VUE_APP_GPT_API_KEY,
+        },
+        body: JSON.stringify({
+          enable_google_results: "true",
+          enable_memory: false,
+          input_text: payload.requestPhrase,
+        }),
+      });
       const responseData = await response.json();
 
       if (!response.ok) {
@@ -99,6 +98,7 @@ const requestModule = {
   getters: {
     requests: (state) => state.requests,
     lastAnswer: (state) => state.lastAnswer,
+    convincedOrNotCounter: (state) => state.convincedOrNotCounter,
   },
 };
 
