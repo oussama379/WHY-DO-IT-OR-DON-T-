@@ -27,7 +27,7 @@
     </el-col>
     <el-row>
       <el-button type="info">Request Another Answer</el-button>
-      <el-button type="success">Save Answer</el-button>
+      <el-button type="success" @click="saveAnswer">Save Answer</el-button>
     </el-row>
   </base-card>
 </template>
@@ -47,7 +47,17 @@ export default {
       console.log(this.$store.getters.lastAnswer);
       return this.$store.getters.lastAnswer;
     },
-    // ...mapGetters(["lastAnswer"]),
+  },
+  methods: {
+    saveAnswer() {
+      this.$store.commit("addRequest", {
+        id: this.$store.getters.requests.length + 1,
+        categoryName: this.answer.categoryName,
+        requestPhrase: this.answer.requestPhrase,
+        answer: this.answer.answer,
+      });
+      this.$router.push("/my-requests");
+    },
   },
 };
 </script>

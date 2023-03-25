@@ -55,6 +55,25 @@ const requestModule = {
     ],
   },
   mutations: {
+    addRequest(state, payload) {
+      state.requests.push({
+        id: payload.id,
+        categoryName: payload.categoryName,
+        requestPhrase: payload.requestPhrase,
+        answer: payload.answer,
+      });
+    },
+    deleteRequest(state, payload) {
+      state.requests = state.requests.filter((request) => {
+        return request.id !== payload.id;
+      });
+    },
+    addConvincedCounter(state) {
+      state.convincedOrNotCounter.convinced++;
+    },
+    addNotConvincedCounter(state) {
+      state.convincedOrNotCounter.notConvinced++;
+    },
     setAnswer(state, payload) {
       state.lastAnswer.categoryName = payload.categoryName;
       state.lastAnswer.requestPhrase = payload.requestPhrase;
@@ -69,17 +88,17 @@ const requestModule = {
     async sendRequestToGptApi(context, payload) {
       context.commit("changeLoading");
       const response = await fetch(process.env.VUE_APP_GPT_API_URL, {
-        method: "POST",
+        method: "GET",
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          "X-API-KEY": process.env.VUE_APP_GPT_API_KEY,
+          // "X-API-KEY": process.env.VUE_APP_GPT_API_KEY,
         },
-        body: JSON.stringify({
-          enable_google_results: "true",
-          enable_memory: false,
-          input_text: payload.requestPhrase,
-        }),
+        // body: JSON.stringify({
+        //   enable_google_results: "true",
+        //   enable_memory: false,
+        //   input_text: payload.requestPhrase,
+        // }),
       });
       const responseData = await response.json();
 

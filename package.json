@@ -9,6 +9,7 @@
     "debug": "ndb node --inspect-brk=9229 node_modules/@vue/cli-service/bin/vue-cli-service.js serve"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "core-js": "^3.8.3",
     "element-plus": "^2.3.0",
     "vue": "^3.2.47",

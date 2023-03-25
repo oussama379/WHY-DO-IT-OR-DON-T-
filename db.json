@@ -1,0 +1,31 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "email": "sebastian@codingthesmartway.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Steve",
+      "last_name": "Palmer",
+      "email": "steve@codingthesmartway.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Ann",
+      "last_name": "Smith",
+      "email": "ann@codingthesmartway.com"
+    },
+    {
+      "id": 4,
+      "first_name": "Sebastian",
+      "last_name": "Eschweilerx",
+      "email": "sebastian@codingthesmartway.com"
+    }
+  ],
+  "responsesFromChatGpt": {
+    "message": "If you're looking for a movie that's unique, thought-provoking, and emotionally impactful, then Annette might just be the film for you. Firstly, the movie is a musical drama directed by Leos Carax, who is known for his visually stunning and emotionally charged films. The movie"
+  }
+}

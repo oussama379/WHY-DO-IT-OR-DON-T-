@@ -16,6 +16,13 @@
           <div>
             {{ request.answer }}
           </div>
+          <el-row>
+            <el-button
+              type="danger"
+              :icon="Delete"
+              @click="deleteAnswer(request.id)"
+            />
+          </el-row>
         </el-collapse-item>
       </el-collapse>
     </div>
@@ -32,6 +39,11 @@ export default {
   computed: {
     requests() {
       return this.$store.getters.requests;
+    },
+  },
+  methods: {
+    deleteAnswer(id) {
+      this.$store.commit("deleteRequest", { id: id });
     },
   },
 };
